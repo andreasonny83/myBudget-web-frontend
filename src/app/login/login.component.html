@@ -28,12 +28,29 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-card-actions fxLayout="row" fxLayoutAlign="center center">
-        <button type="submit"
-                mat-raised-button color="primary"
-                [disabled]="loginForm.pristine || loginForm.invalid"
-                class="btn btn-login">Log In</button>
+      <mat-card-actions>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button type="submit"
+                  mat-raised-button color="primary"
+                  [disabled]="loginForm.pristine || loginForm.invalid"
+                  class="btn btn-login"
+                  (click)="signInWithEmail()">Log In</button>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="space-evenly center" class="login-socials">
+          <button mat-raised-button color="primary" class="btn-login" (click)="signInWithGoogle()">
+            Sign In with Google
+          </button>
+          <button mat-raised-button color="primary" class="btn-login" (click)="signInWithFB()">
+            Sign In with Facebook
+          </button>
+        </div>
       </mat-card-actions>
     </form>
   </mat-card-content>
 </mat-card>
+
+<img src="{{ user?.photoUrl }}">
+<div>
+  <h4>{{ user?.name }}</h4>
+  <p>{{ user?.email }}</p>
+</div>

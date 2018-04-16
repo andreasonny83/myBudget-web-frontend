@@ -1,19 +1,13 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
     <span>{{ title }}</span>
-  </mat-toolbar-row>
-
-  <mat-toolbar-row>
-    <span>Third Line</span>
-    <span class="example-spacer"></span>
-    <mat-icon class="example-icon">favorite</mat-icon>
-    <mat-icon class="example-icon">delete</mat-icon>
+    <span fxFlex="1 1 auto"></span>
+    <button *ngIf="loggedIn"
+            mat-button
+            (click)="logOut()">Log Out</button>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<nav>
-  <a routerLink="/login">login</a>
-  <a routerLink="/">dashboard</a>
-</nav>
+<span>Signed id: {{loggedIn}}</span>
 
 <router-outlet></router-outlet>

@@ -1,8 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { SocialLoginModule, AuthServiceConfig } from 'angularx-social-login';
+import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app.routing';
 
@@ -15,9 +18,12 @@ import {
   MatIconModule
 } from '@angular/material';
 
+import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+
+const provideConfig = () => environment.socialConfig;
 
 @NgModule({
   declarations: [
@@ -28,9 +34,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
+    HttpClientModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FlexLayoutModule,
+    SocialLoginModule,
     MatToolbarModule,
     MatFormFieldModule,
     MatInputModule,
@@ -38,7 +46,10 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     MatCardModule,
     MatIconModule
   ],
-  providers: [],
+  providers: [
+    { provide: AuthServiceConfig, useFactory: provideConfig },
+    AuthService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
