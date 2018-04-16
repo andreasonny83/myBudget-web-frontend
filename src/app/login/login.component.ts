@@ -13,8 +13,6 @@ import { AuthService, SocialUser } from '../auth.service';
 })
 export class LoginComponent implements OnInit {
   public loginForm: FormGroup;
-  public user: SocialUser;
-  public loggedIn: boolean;
 
   constructor(private fb: FormBuilder, private authService: AuthService) { }
 
@@ -24,16 +22,21 @@ export class LoginComponent implements OnInit {
 
   private createForm() {
     this.loginForm = this.fb.group({
-      username: ['', [ Validators.required, Validators.minLength(6) ] ],
-      password: ['', [ Validators.required, Validators.minLength(6) ] ],
+      username: ['', [ Validators.required, Validators.minLength(4) ] ],
+      password: ['', [ Validators.required, Validators.minLength(4) ] ],
     });
   }
 
-  signInWithEmail(): void {
-    this.authService.signInWithEmail('user', 'pass')
-      .subscribe(res => {
-        console.log(res);
-      });
+  signInWithEmail(user: FormGroup): void {
+    if (this.loginForm.invalid) {
+      return;
+    }
+
+    const username = user.value.username;
+    const password = user.value.password;
+
+    this.authService.signInWithEmail(username, password)
+      .subscribe(res => this.loginForm.reset());
   }
 
   signInWithGoogle(): void {

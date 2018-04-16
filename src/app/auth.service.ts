@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import {
   AuthService as SocialService,
   FacebookLoginProvider,
@@ -7,39 +8,39 @@ import {
 } from 'angularx-social-login';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
-import { Subject } from 'rxjs/Subject';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 const API_URL = 'https://floating-ravine-25522.herokuapp.com/public/v1';
 
 export { SocialUser } from 'angularx-social-login';
 
-
 @Injectable()
 export class AuthService {
   public user: SocialUser;
-  private loggedIn: Subject<boolean> = new Subject<boolean>();
+  private loggedIn: BehaviorSubject<boolean>;
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     private authService: SocialService
   ) {
-    // this.loggedIn = new Subject<boolean>();
+    this.loggedIn = new BehaviorSubject<boolean>(false);
     this.authService.authState.subscribe((user) => {
       this.user = user;
-      // this.loggedIn.next(user != null);
+      this.loggedIn.next(user !== null);
 
-      console.log('user', this.user);
-      // console.log('loggedIn', this.loggedIn);
+      if (user !== null) {
+        this.router.navigate(['/']);
+      }
     });
   }
 
   get isLoggedIn(): Observable<boolean> {
-    return Observable.of(true);
-    // return this.loggedIn.asObservable();
+    return this.loggedIn.asObservable();
   }
 
   signInWithEmail(username: string, password: string): Observable<any> {
-    return this.http.post<any>(`${API_URL}/login`, {});
+    return this.http.post<any>(`${API_URL}/login`, { username, password });
   }
 
   signInWithGoogle(): void {
@@ -51,6 +52,11 @@ export class AuthService {
   }
 
   signOut(): void {
-    this.authService.signOut();
+    this.authService
+      .signOut()
+      .then(() => {
+        this.loggedIn.next(false);
+        this.router.navigate(['/login']);
+      });
   }
 }

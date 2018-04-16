@@ -18,6 +18,7 @@ import {
   MatIconModule
 } from '@angular/material';
 
+import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -48,7 +49,8 @@ const provideConfig = () => environment.socialConfig;
   ],
   providers: [
     { provide: AuthServiceConfig, useFactory: provideConfig },
-    AuthService
+    AuthService,
+    AuthGuard
   ],
   bootstrap: [AppComponent]
 })

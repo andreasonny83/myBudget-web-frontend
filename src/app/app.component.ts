@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService, SocialUser } from './auth.service';
 import { Observable } from 'rxjs/Observable';
 
@@ -7,12 +7,15 @@ import { Observable } from 'rxjs/Observable';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'myBudget';
-  loggedIn: any;
+  isLoggedIn$: Observable<boolean>;
 
   constructor(private authService: AuthService) {
-    this.loggedIn = authService.isLoggedIn;
+  }
+
+  ngOnInit(): void {
+    this.isLoggedIn$ = this.authService.isLoggedIn;
   }
 
   logOut(): void {
