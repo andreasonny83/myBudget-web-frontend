@@ -15,13 +15,15 @@ import {
   MatInputModule,
   MatButtonModule,
   MatCardModule,
-  MatIconModule
+  MatIconModule,
+  MatProgressSpinnerModule,
 } from '@angular/material';
 
 import { AuthGuard } from './auth.guard';
 import { AuthService } from './auth.service';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 const provideConfig = () => environment.socialConfig;
@@ -30,7 +32,8 @@ const provideConfig = () => environment.socialConfig;
   declarations: [
     AppComponent,
     LoginComponent,
-    DashboardComponent
+    RegisterComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
@@ -45,12 +48,13 @@ const provideConfig = () => environment.socialConfig;
     MatInputModule,
     MatButtonModule,
     MatCardModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     { provide: AuthServiceConfig, useFactory: provideConfig },
     AuthService,
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

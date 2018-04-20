@@ -1,0 +1,63 @@
+<mat-card class="register-card mat-elevation-z20">
+  <img width="200" class="register-logo" alt="myBudget Logo" src="assets/save.svg"/>
+  <mat-card-title>
+    Register
+  </mat-card-title>
+
+  <mat-card-content>
+    <form class="register-form" [formGroup]="registerForm" novalidate (ngSubmit)="signInWithEmail(registerForm)">
+      <mat-form-field color="primary" class="register-form-field">
+        <input matInput
+              type="text"
+              placeholder="username"
+              formControlName="username">
+        <mat-icon matPrefix class="icon">account_circle</mat-icon>
+        <mat-error *ngIf="registerForm.get('username')?.invalid">
+          Min 4 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="primary" class="register-form-field">
+        <input matInput
+              type="password"
+              placeholder="password"
+              formControlName="password">
+        <mat-icon matPrefix class="icon">lock</mat-icon>
+        <mat-error *ngIf="registerForm.get('password')?.invalid">
+          Min 4 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="primary" class="register-form-field">
+        <input matInput
+              type="password"
+              placeholder="confirm password"
+              formControlName="passwordConfirm">
+        <mat-icon matPrefix class="icon">lock</mat-icon>
+        <mat-error *ngIf="registerForm.get('passwordConfirm')?.invalid">
+          Min 4 characters
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field color="primary" class="register-form-field">
+        <input matInput
+              type="email"
+              placeholder="email address"
+              formControlName="email">
+        <mat-icon matPrefix class="icon">mail</mat-icon>
+        <mat-error *ngIf="registerForm.get('email')?.invalid">
+          Enter a valid email address
+        </mat-error>
+      </mat-form-field>
+
+      <mat-card-actions>
+        <div fxLayout="row" fxLayoutAlign="center center">
+          <button type="submit"
+                  mat-raised-button color="primary"
+                  [disabled]="registerForm.pristine || registerForm.invalid"
+                  class="btn btn-register">Register</button>
+        </div>
+      </mat-card-actions>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -5,7 +5,10 @@
   </mat-card-title>
 
   <mat-card-content>
-    <form class="login-form" [formGroup]="loginForm" novalidate (ngSubmit)="signInWithEmail(loginForm)">
+    <form class="login-form"
+          [formGroup]="loginForm"
+          novalidate
+          (ngSubmit)="signInWithEmail(loginForm)">
       <mat-form-field color="primary" class="login-form-field">
         <input matInput
               type="text"
@@ -30,10 +33,18 @@
 
       <mat-card-actions>
         <div fxLayout="row" fxLayoutAlign="center center">
+          <button type="button"
+                  mat-raised-button color="accent"
+                  class="btn btn-login"
+                  (click)="onRegister()">Register</button>
+
           <button type="submit"
                   mat-raised-button color="primary"
-                  [disabled]="loginForm.pristine || loginForm.invalid"
-                  class="btn btn-login">Log In</button>
+                  [disabled]="loginForm.pristine || loginForm.invalid || submitting"
+                  class="btn btn-login">
+             <span>Log In</span>
+             <mat-spinner *ngIf="submitting" class="spinner" diameter="20"></mat-spinner>
+          </button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" class="login-socials">
           <button mat-raised-button color="primary" class="btn-login" (click)="signInWithGoogle()">
