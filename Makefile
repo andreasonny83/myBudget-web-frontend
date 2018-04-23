@@ -24,4 +24,4 @@ apply:
 	docker run -it --rm -v ${PWD}:/app -v ${HOME}/.aws:/home/.aws terraform:mybudget apply
 
 deploy: build-dist
-	aws s3 sync dist/ s3://mubudget.com/
+	aws s3 sync dist/ s3://mubudget.com/ --delete

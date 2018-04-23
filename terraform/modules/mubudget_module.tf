@@ -15,8 +15,8 @@ resource "aws_iam_user" "user" {
 }
 
 resource "aws_iam_user_policy" "user_policy" {
-  name = "Allow_S3_bucket_${var.static_web_page_user}_read_write"
-  user = "${var.static_web_page_user}"
+  name = "Allow_S3_bucket_read_write"
+  user = "${aws_iam_user.user.name}"
 
   policy = <<EOF
 {
@@ -46,8 +46,49 @@ resource "aws_iam_user_policy" "user_policy" {
 EOF
 }
 
-resource "aws_s3_bucket" "bbucket" {
+data "aws_iam_policy_document" "policy" {
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:DeleteObject",
+      "s3:GetObject",
+      "s3:GetObjectAcl",
+      "s3:PutObject",
+      "s3:PutObjectAcl",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.static_web_page_bucket}/*",
+    ]
+
+    principals = {
+      type        = "AWS"
+      identifiers = ["${aws_iam_user.user.arn}"]
+    }
+  }
+
+  statement {
+    effect = "Allow"
+
+    actions = [
+      "s3:GetObject",
+    ]
+
+    resources = [
+      "arn:aws:s3:::${var.static_web_page_bucket}/*",
+    ]
+
+    principals = {
+      type        = "AWS"
+      identifiers = ["*"]
+    }
+  }
+}
+
+resource "aws_s3_bucket" "bucket" {
   bucket = "${var.static_web_page_bucket}"
+  policy = "${data.aws_iam_policy_document.policy.json}"
   acl    = "public-read"
 
   website {
