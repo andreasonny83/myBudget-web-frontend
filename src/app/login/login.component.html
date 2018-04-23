@@ -1,7 +1,7 @@
 <mat-card class="login-card mat-elevation-z20">
   <img width="200" class="login-logo" alt="myBudget Logo" src="assets/save.svg"/>
   <mat-card-title>
-    Log in
+    <span class="mobile">Log in</span>
   </mat-card-title>
 
   <mat-card-content>
@@ -35,13 +35,13 @@
         <div fxLayout="row" fxLayoutAlign="center center">
           <button type="button"
                   mat-raised-button color="accent"
-                  class="btn btn-login"
+                  class="btn signin-button"
                   (click)="onRegister()">Register</button>
 
           <button type="submit"
                   mat-raised-button color="primary"
                   [disabled]="loginForm.pristine || loginForm.invalid || submitting"
-                  class="btn btn-login">
+                  class="btn signin-button">
             <span *ngIf="!submitting">Log In</span>
             <mat-spinner *ngIf="submitting"
                          diameter="20"></mat-spinner>
@@ -50,14 +50,14 @@
         <div fxLayout="row" fxLayoutAlign="space-evenly center" class="login-socials">
           <button mat-raised-button
                   color="primary"
-                  class="btn-login"
+                  class="signin-button"
                   (click)="signInWithGoogle()">
             <mat-icon svgIcon="google_icon"></mat-icon>
             <span class="mobile">Sign In with Google</span>
           </button>
           <button mat-raised-button
                   color="primary"
-                  class="btn-login"
+                  class="signin-button"
                   (click)="signInWithFB()">
             <mat-icon svgIcon="facebook_icon"></mat-icon>
             <span class="mobile">Sign In with Facebook</span>

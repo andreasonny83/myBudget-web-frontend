@@ -52,10 +52,15 @@
 
       <mat-card-actions>
         <div fxLayout="row" fxLayoutAlign="center center">
+          <button type="button"
+                  mat-raised-button color="accent"
+                  class="btn signin-button"
+                  (click)="onSignIn()">Sign In</button>
+
           <button type="submit"
                   mat-raised-button color="primary"
                   [disabled]="registerForm.pristine || registerForm.invalid"
-                  class="btn btn-register">Register</button>
+                  class="btn signin-button">Register</button>
         </div>
       </mat-card-actions>
     </form>

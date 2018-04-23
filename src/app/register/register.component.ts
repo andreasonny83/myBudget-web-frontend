@@ -5,6 +5,7 @@ import {
   FormBuilder,
   Validators
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from '../auth.service';
 @Component({
   selector: 'app-register',
@@ -16,6 +17,7 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
+    private router: Router,
     private authService: AuthService,
   ) { }
 
@@ -30,6 +32,10 @@ export class RegisterComponent implements OnInit {
       passwordConfirm: ['', [ Validators.required, Validators.minLength(4) ] ],
       email: ['', [ Validators.required, Validators.email ] ],
     });
+  }
+
+  onSignIn(): void {
+    this.router.navigate(['/login']);
   }
 
   signInWithEmail(user: FormGroup): void {
