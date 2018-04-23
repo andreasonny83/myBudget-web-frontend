@@ -33,9 +33,15 @@
 }
 
 .btn-login {
-  padding: 0 60px;
-  line-height: 40px;
-  border-radius: 20px;
+  padding: 9px 30px;
+  border-radius: 28px;
+  font-size: 16px;
+  height: 54px;
+}
+
+.btn-login +
+.btn-login {
+  margin-left: 20px;
 }
 
 .login-socials {
@@ -43,6 +49,5 @@
 }
 
 .spinner {
-  display: inline;
   margin-left: 8px;
 }
