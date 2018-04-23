@@ -36,6 +36,14 @@ body {
   display: none;
 }
 
+.mat-button.signin-button,
+.mat-raised-button.signin-button {
+  padding: 9px 30px;
+  border-radius: 28px;
+  font-size: 16px;
+  height: 54px;
+}
+
 @media (min-width: 600px) {
   span.mobile {
     display: initial;
