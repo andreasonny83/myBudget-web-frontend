@@ -3,10 +3,10 @@ import {
   FormControl,
   FormGroup,
   FormBuilder,
-  Validators
+  Validators,
 } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService, SocialUser } from '../auth.service';
+import { AuthService, SocialUser, LoginResponse } from '../auth.service';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -52,6 +52,7 @@ export class LoginComponent implements OnInit {
     this.authService.signInWithEmail(username, password)
       .subscribe(
         res => {
+          console.log(res);
           this.loginForm.reset();
           this.submitting = false;
           this.loginForm.get('username').enable();

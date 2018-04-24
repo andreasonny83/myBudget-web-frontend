@@ -1,5 +1,7 @@
 # MyBudget Web
 
+[![CircleCI](https://circleci.com/gh/andreasonny83/myBudget-web-frontend/tree/master.svg?style=svg)](https://circleci.com/gh/andreasonny83/myBudget-web-frontend/tree/master)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.4.
 
 ## Development server
@@ -22,6 +24,35 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
+## Creating infrostructure
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+This project uses Terraform to create a `mubudget.com` S3 bucket into your AWS account.
+Make sure you have your AWS credentials available in your machine and Terraform installed.
+
+### Initialize Terraform
+
+```sh
+$ terraform init terraform/environments
+```
+### Plan your Terraform changes
+
+```sh
+$ terraform plan terraform/environments
+```
+### Apply your Terraform changes
+
+```sh
+$ terraform apply terraform/environments
+```
+
+This will create a `mubudget.com` S3 bucket and a `mubudget-s3-upload`
+user with writing access to your new S3 bucket only.
+
+## Deploy S3
+
+```sh
+$ make deploy
+```
+
+This will build a new distribution version of the project and sync the `dist/`
+folder with the S3 bucket.

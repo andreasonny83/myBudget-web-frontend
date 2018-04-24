@@ -1,13 +1,13 @@
-<mat-toolbar color="primary">
-  <mat-toolbar-row>
-    <span>{{ title }}</span>
-    <span fxFlex="1 1 auto"></span>
-    <button *ngIf="isLoggedIn$ | async"
-            mat-button
-            (click)="logOut()">Log Out</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<div class="app-container">
+  <mat-toolbar color="primary">
+    <mat-toolbar-row>
+      <span>{{ title }}</span>
+      <span fxFlex="1 1 auto"></span>
+      <button *ngIf="isLoggedIn$ | async"
+              mat-button
+              (click)="logOut()">Log Out</button>
+    </mat-toolbar-row>
+  </mat-toolbar>
 
-<span>Signed id: {{ isLoggedIn$ | async }}</span>
-
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

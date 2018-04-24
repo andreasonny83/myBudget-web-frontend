@@ -42,3 +42,13 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Terraform
+**/.terraform
+**/.aws
+terraform.tfstate*
+
+**/files/**
+!**/files/*.zip
+
+**/.*.swp

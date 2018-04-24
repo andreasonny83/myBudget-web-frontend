@@ -1,7 +1,7 @@
 <mat-card class="login-card mat-elevation-z20">
   <img width="200" class="login-logo" alt="myBudget Logo" src="assets/save.svg"/>
   <mat-card-title>
-    Log in
+    <span class="mobile">Log in</span>
   </mat-card-title>
 
   <mat-card-content>
@@ -15,7 +15,7 @@
               placeholder="username"
               formControlName="username">
         <mat-icon matPrefix class="icon">account_circle</mat-icon>
-        <mat-error *ngIf="loginForm.get('username')?.invalid">
+        <mat-error *ngIf="loginForm.get('username')?.invalid && !!loginForm.get('username').value">
           Min 4 characters
         </mat-error>
       </mat-form-field>
@@ -26,7 +26,7 @@
               placeholder="password"
               formControlName="password">
         <mat-icon matPrefix class="icon">lock</mat-icon>
-        <mat-error *ngIf="loginForm.get('password')?.invalid">
+        <mat-error *ngIf="loginForm.get('password')?.invalid && !!loginForm.get('password').value">
           Min 4 characters
         </mat-error>
       </mat-form-field>
@@ -35,23 +35,32 @@
         <div fxLayout="row" fxLayoutAlign="center center">
           <button type="button"
                   mat-raised-button color="accent"
-                  class="btn btn-login"
+                  class="btn signin-button"
                   (click)="onRegister()">Register</button>
 
           <button type="submit"
                   mat-raised-button color="primary"
                   [disabled]="loginForm.pristine || loginForm.invalid || submitting"
-                  class="btn btn-login">
-             <span>Log In</span>
-             <mat-spinner *ngIf="submitting" class="spinner" diameter="20"></mat-spinner>
+                  class="btn signin-button">
+            <span *ngIf="!submitting">Log In</span>
+            <mat-spinner *ngIf="submitting"
+                         diameter="20"></mat-spinner>
           </button>
         </div>
         <div fxLayout="row" fxLayoutAlign="space-evenly center" class="login-socials">
-          <button mat-raised-button color="primary" class="btn-login" (click)="signInWithGoogle()">
-            Sign In with Google
+          <button mat-raised-button
+                  color="primary"
+                  class="signin-button"
+                  (click)="signInWithGoogle()">
+            <mat-icon svgIcon="google_icon"></mat-icon>
+            <span class="mobile">Sign In with Google</span>
           </button>
-          <button mat-raised-button color="primary" class="btn-login" (click)="signInWithFB()">
-            Sign In with Facebook
+          <button mat-raised-button
+                  color="primary"
+                  class="signin-button"
+                  (click)="signInWithFB()">
+            <mat-icon svgIcon="facebook_icon"></mat-icon>
+            <span class="mobile">Sign In with Facebook</span>
           </button>
         </div>
       </mat-card-actions>
