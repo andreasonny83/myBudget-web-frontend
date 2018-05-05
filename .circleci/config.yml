@@ -148,6 +148,8 @@ workflows:
           filters:
             branches:
               only: master
+            tags:
+              ignore: /^v.*/
 
       - deploy:
           requires:
