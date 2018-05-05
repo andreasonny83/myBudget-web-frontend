@@ -144,10 +144,7 @@ workflows:
       - test
 
       - build:
-          # Deploy only from master branch
           filters:
-            branches:
-              only: master
             tags:
               ignore: /^v.*/
 
