@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 
 import { AuthService, LanguageService } from '@core';
+import { MatSidenav } from '@shared';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +13,18 @@ import { AuthService, LanguageService } from '@core';
 export class AppComponent implements OnInit {
   public title: string;
   public isLoggedIn$: Observable<boolean>;
+  public isHandset: Observable<BreakpointState>;
+
+  @ViewChild('drawer')
+  public drawer: MatSidenav;
 
   constructor(
     private authService: AuthService,
     private languageService: LanguageService,
+    private breakpointObserver: BreakpointObserver,
   ) {
     this.title = 'myBudget';
+    this.isHandset = this.breakpointObserver.observe(Breakpoints.Handset);
     this.languageService.init();
   }
 
@@ -26,5 +34,6 @@ export class AppComponent implements OnInit {
 
   public logOut(): void {
     this.authService.signOut();
+    this.drawer.close();
   }
 }

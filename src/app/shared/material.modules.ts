@@ -6,6 +6,8 @@ import {
   MatCardModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatListModule,
 } from '@angular/material';
 
 export const MATERIAL_MODULES = [
@@ -16,6 +18,9 @@ export const MATERIAL_MODULES = [
   MatCardModule,
   MatIconModule,
   MatProgressSpinnerModule,
+  MatSidenavModule,
+  MatListModule,
 ];
 
 export { MatIconRegistry } from '@angular/material/icon';
+export { MatSidenav } from '@angular/material/sidenav';
