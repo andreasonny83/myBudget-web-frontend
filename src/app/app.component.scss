@@ -1,16 +1,26 @@
-.space {
-  flex: 1 1 auto;
+
+.sidenav-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.mat-drawer-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sidenav {
+  width: 260px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
 }
 
 .app-container {
-  height: 100%;
-  overflow-y: auto;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  flex: 1;
 }
 
-.app-content {
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+.space {
+  flex: 1 1 auto;
 }
