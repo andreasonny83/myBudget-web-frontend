@@ -9,18 +9,20 @@
     <mat-toolbar color="primary">Menu</mat-toolbar>
 
     <mat-nav-list>
-      <a mat-list-item (click)="drawer.close()" routerLink="register">Register</a>
-      <a mat-list-item (click)="drawer.close()" routerLink="login">Login</a>
-      <a mat-list-item (click)="drawer.close()" routerLink="dashboard">Dashboard</a>
-
+      <label> Account </label>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/new-account">New</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/edit-account">Edit</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/invite-users-account">Invite an User</a>
       <mat-divider></mat-divider>
-
+      <label> Movimenti </label>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/movements">Find</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/scheduled-movements">Scheduled</a>
+    <mat-divider></mat-divider>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/budgets">Budget</a>
+      <a mat-list-item (click)="drawer.close()" routerLink="home/settings">Settings</a>
       <a mat-list-item (click)="logOut()">Log out</a>
-
-      <mat-divider></mat-divider>
-
-      <a mat-list-item (click)="drawer.close()" routerLink=".">Item - 6</a>
     </mat-nav-list>
+
   </mat-sidenav>
 
   <mat-sidenav-content class="mat-drawer-container">
