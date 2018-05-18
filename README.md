@@ -13,7 +13,7 @@
     - [Serving the app](#serving-the-app)
     - [Unit teststing](#unit-teststing)
     - [Building a distribution version](#building-a-distribution-version)
-  - [Infrostructure](#infrostructure)
+  - [Infrastructure](#infrastructure)
     - [Initialize Terraform](#initialize-terraform)
     - [Plan your Terraform changes](#plan-your-terraform-changes)
     - [Apply your Terraform changes](#apply-your-terraform-changes)
@@ -77,7 +77,7 @@ $ npm test
 $ npm run build
 ```
 
-## Infrostructure
+## Infrastructure
 
 This project uses Terraform to create a `mubudget.com` S3 bucket into your AWS account.
 Make sure you have your AWS credentials available in your machine and Terraform installed.
